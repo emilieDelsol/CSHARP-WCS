@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csharp1-UnTableau", "Csharp1-UnTableau\Csharp1-UnTableau.csproj", "{88A287E8-8A53-4EA3-B105-C2B0D278BC07}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88A287E8-8A53-4EA3-B105-C2B0D278BC07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88A287E8-8A53-4EA3-B105-C2B0D278BC07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88A287E8-8A53-4EA3-B105-C2B0D278BC07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88A287E8-8A53-4EA3-B105-C2B0D278BC07}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {98DF4995-4218-499D-B27D-BB5EE31DC4E4}
+	EndGlobalSection
+EndGlobal
