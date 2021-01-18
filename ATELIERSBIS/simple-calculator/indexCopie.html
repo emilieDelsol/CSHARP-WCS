@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Titre de la page</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+        let playerName = prompt('Enter your name');
+        let number = -1
+        let chance = prompt('Combien de chances voulez-vous? ');
+        const random = Math.floor(Math.random() * 100) + 1;
+        number = parseInt(number);
+        let i = 1;
+        
+        while (number!=random){
+            if ((i-1)==chance){
+                console.log(`Tu as utilisé tes ${chance} chances!`);
+                number=random;
+            }
+            else{
+            
+                number = parseInt(prompt(`chance n° ${i} Enter a number:`));
+                
+                number>random ? console.log(`Chance n° ${i} it's less`): number<random ? console.log(`Chance n° ${i} It's more`) : console.log(playerName + " wins!");
+                
+                i++
+            }
+        }
+  </script>
+</head>
+<body>
+  ...
+  <!-- Le reste du contenu -->
+  ...
+</body>
+</html>
