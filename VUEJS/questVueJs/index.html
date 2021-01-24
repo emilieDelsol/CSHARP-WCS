@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js - welcome aboard challenge</title>
+    <script src="./data.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+      
+    <!-- vue content will bee injected here, tada ! -->
+  </div>
+
+  <script>
+  var TicketComponent = {
+        template: `
+      <li class="list-group-item">
+        <span v-for="(tag, index) in ticket.tags" v-if="tags[tag].checked" :style="{ color: tags[tag].color}">{{ tags[tag].title }} - </span>
+        {{ ticket.content }}
+        <span v-for="(assign, index) in ticket.assigns"> {{assign}}  </span>
+
+      </li>
+    `,
+        props: ["ticket", "tags"],
+    }
+    
+    
+    var ColumnsComponent = {
+        template : `
+            <div class="mt-3">
+            <h2>{{ title }}</h2>
+                <ul class="list-group">
+                    <ticket-component v-for="(ticket,index) in tickets" :ticket ="ticket" :tags="tags"  :key="index" />
+                
+                </ul>
+                
+            </div>`,
+        components: {TicketComponent},
+        props: [
+            "tickets",
+            "tags",
+            "title",
+            
+        ]
+    };
+
+    new Vue ({
+        el: '#app',
+
+        // You should change that
+        template: `
+            <div>
+                <h1 class="text-center">Vue Js quest:</h1>
+                <p class="text-center"> By Emilie...</p>
+                <div class="card m-4">
+                    <div class="card-header">
+                        <form class="form-inline">
+                            <div class="form-check form-check-inline" v-for="(value, key) in tags">
+                                <input type="checkbox" v-model="value.checked">
+                                <label :style="{ fontWeight: value.checked ? 'bold' : 'normal', textDecoration: value.checked? 'none' : 'line-through', color: value.color }"> {{ value.title }} </label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-body">
+                        <columns-component v-for="(id, index) in orderedColumns" :title="columns[id].title" :tickets="ticketsByColumn[id]" :tags="tags" :dreamTem="dreamTeam" :key="id"/>
+                    </div>
+                    <span v-for="dream in dreamTeam">{{dream.name}}</span>
+                    <span>test: {{dreamTeam[2].name}}</span>
+                </div>
+            </div>
+        `,
+        data: {
+            columns: data.columns,
+            tickets: data.tickets,
+            dreamTeam: data.dreamTeam,
+            tags:  Object.keys(data.tags).reduce((tags, key) => {
+                tags[key] = { ...data.tags[key], checked: true }
+                return tags
+            }, {})
+        },
+        components: {ColumnsComponent},
+        computed: {
+            orderedColumns () {
+                return Object.keys(this.columns).sort((a, b) => this.columns[a].order - this.columns[b].order)
+            },
+            ticketsByColumn () {
+                return Object.keys(this.columns).reduce((columns, key) => {
+                    columns[key] = Object.keys(this.tickets).filter(ticketId => {
+                        let columnCheck = this.tickets[ticketId].column == key
+                        let hasTags = this.tickets[ticketId].tags.length > 0
+                        let oneTagIsChecked = this.tickets[ticketId].tags.some(tag => this.tags[tag].checked)
+                        return columnCheck && (!hasTags || oneTagIsChecked)
+                    }).map(id => this.tickets[id])
+                    return columns
+                }, {})
+            }
+        }
+    });
+  
+  </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Titre de la page</title>
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+  <h1></h1>
+  <label for="number1">Number1:</label>
+    <input
+      type="text"
+      name="number1"
+      id="firstValue"
+      value=""
+    />
+  <label for="number2">Number2:</label>
+    <input
+      type="text"
+      name="number2"
+      id="secondValue"
+      value=""
+      />
+
+  <label for="operand-select">Choose an operand:</label>
+
+    <select name="operand-select" id="operand">
+      <option value="">--Please choose an option--</option>
+      <option value="+">+</option>
+      <option value="-">-</option>
+      <option value="*">*</option>
+      <option value="/">/</option>
+    </select>
+
+    <input type="submit" value="calculate" id="button" />
+    
+    <div id="result"></div>
+  <script src="./index.js"></script>
+</body>
+</html>
